@@ -1,5 +1,5 @@
 var express = require('express');
-var sentiment = require('../node_modules/sentimentz');
+var sentiment = require('../sentimentz');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
