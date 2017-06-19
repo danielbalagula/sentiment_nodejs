@@ -13,8 +13,16 @@ router.post('/sentiment', function(req, res, next){
 router.post('/sentiment_batch', function(req, res, next){
   var results = [];
   req.body.forEach(function(phrase){
-    console.log(phrase);
     results.push({result:(sentiment(phrase).score >= 0 ? "Positive" : "Negative")});
+  });
+  res.json(results);
+});
+
+router.post('/get_positive', function(req, res, next){
+  var results = [];
+  req.body.forEach(function(obj){
+    var sent = sentiment(obj.text).score >= 0 ? "Positive" : "Negative";
+    if (sent == "Positive") results.push(obj.email)
   });
   res.json(results);
 });
